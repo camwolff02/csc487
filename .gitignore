@@ -175,4 +175,5 @@ cython_debug/
 
 # ML stuff
 runs/
+models/
 *.npz
