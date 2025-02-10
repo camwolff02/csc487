@@ -177,3 +177,8 @@ cython_debug/
 runs/
 models/
 *.npz
+*.zip
+
+# Specific stuff
+__MACOSX/
+oxford_pets/
