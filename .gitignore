@@ -176,8 +176,11 @@ cython_debug/
 # ML stuff
 runs/
 models/
+datasets/
 *.npz
 *.zip
+*.pt
+*.csv
 
 # Specific stuff
 __MACOSX/
