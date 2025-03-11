@@ -4,7 +4,8 @@ from ultralytics import YOLO
 
 # SET THESE MANUALLY
 single_eye = False
-path = 'runs/detect/train8/weights/best.onnx'
+path = 'best.onnx'
+
 
 # Load the trained YOLO model
 model = YOLO(path)  # Change to your fine-tuned model path
@@ -24,6 +25,11 @@ while cap.isOpened():
     # Run YOLO inference on the frame
     results = model(frame)
 
+    img_with_boxes = results[0].plot()
+
+    # Convert BGR to RGB for correct display
+    img_rgb = cv2.cvtColor(img_with_boxes, cv2.COLOR_BGR2RGB)
+
     # Extract bounding boxes and class names
     boxes = results[0].boxes
     class_names = results[0].names
@@ -38,7 +44,7 @@ while cap.isOpened():
             class_name = class_names.get(class_id, "Unknown")
 
             # Filter only 'eye' detections
-            if class_name == "eye":
+            if "eye" in class_name and "brow" not in class_name:
                 x1, y1, x2, y2 = map(int, box)  # Get bounding box coordinates
 
                 # Draw bounding box on the frame
