@@ -3,8 +3,8 @@ import torch
 from ultralytics import YOLO
 
 # SET THESE MANUALLY
-single_eye = False
-path = 'best.onnx'
+single_eye = True
+path = 'model.onnx'
 
 
 # Load the trained YOLO model
