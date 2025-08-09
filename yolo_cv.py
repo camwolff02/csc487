@@ -1,14 +1,13 @@
+import sys
 import cv2
 import torch
 from ultralytics import YOLO
 
 # SET THESE MANUALLY
-single_eye = True
-path = 'model.onnx'
-
-
+path = 'best.onnx' if len(sys.argv) <= 1 else sys.argv[1]
+single_eye = True if len(sys.argv) <= 2 else False
 # Load the trained YOLO model
-model = YOLO(path)  # Change to your fine-tuned model path
+model = YOLO(path, task='detect')  # Change to your fine-tuned model path
 
 # Open webcam (0 = default camera)
 cap = cv2.VideoCapture(0)
